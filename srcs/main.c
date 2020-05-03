@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 13:36:51 by afrangio          #+#    #+#             */
-/*   Updated: 2019/03/21 18:46:06 by afrangio         ###   ########.fr       */
+/*   Updated: 2020/05/03 22:42:29 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdint.h>
 #include "fdf.h"
-#include "mlx.h"
-#include "libft.h"
-#include "math.h"
 
 static void	initiate_mlx(t_gdata *g)
 {
@@ -23,37 +19,6 @@ static void	initiate_mlx(t_gdata *g)
 	g->image = mlx_new_image(g->mlx, WIN_WIDTH, WIN_HEIGHT);
 }
 
-static void put_pixel(int x, int y, int *image)
-{
-	int coord;
-
-	coord = y * WIN_WIDTH + x;
-	if (coord < (WIN_HEIGHT * WIN_WIDTH))
-		image[coord] = 0x5d3591;
-}
-
-static void put_segment(t_segment s, int *image)
-{
-	int dx;
-	int dy;
-	int e;
-
-	if (s.x1 )
- 
-	e = s.x2 - s.x1;
-	dx = e * 2;
-	dy = (s.y2 - s.y1) * 2;
-	while (s.x1 <= s.x2)
-	{
-		put_pixel(s.x1, s.y1, image);
-		s.x1 = s.x1 + 1;
-		if ((e = e - dy) <= 0)
-		{
-			s.y1 = s.y1 + 1;
-			e = e + dx;
-		}
-	}
-}
 
 static void free_mlx(t_gdata *g)
 {
@@ -65,7 +30,7 @@ static int	key_hook(int keycode, t_gdata *g)
 {
 	ft_putnbr(keycode);
 	ft_putstr("\n");
-	if (keycode == 53)
+	if (keycode == 53 || keycode == 65307)
 	{
 		free_mlx(g);
 		exit(0);
@@ -89,6 +54,7 @@ int			main(int ac, char **av)
 	if (ac != 2)
 	{
 		ft_putstr("Wrong argument, usage: fdf <map>\n");
+		(void)av;
 		return (1);
 	}
 
@@ -98,43 +64,25 @@ int			main(int ac, char **av)
 	j = 0;
 	while (i < 25)
 	{
-		if (!(i % 5))
-			++j;
+		printf("i: %d | j: %d | \n", i, j); 
+		
 		g.vectors[i].x = (i % 5) * GRID_SPACEMENT + CORNER_SPACEMENT;
+		
 		g.vectors[i].y = (j % 5) * GRID_SPACEMENT + CORNER_SPACEMENT;
+		
 		g.vectors[i].z = map[i];
+		printf("x: %d | y: %d | z: %d |\n", g.vectors[i].x, g.vectors[i].y, map[i]); 
 		put_pixel(g.vectors[i].x, g.vectors[i].y, image);
 		++i;
+		if (!(i % 5))
+			++j;
 	}
-	i = 0;
-	j = 0;
-	// while (i < 25)
-	// {
-	// 	t_segment s;
-	//  	s.x1 = g.vectors[i].x;
-	// 	s.y1 = g.vectors[i].y;
-	// 	s.x2 = g.vectors[i + 1].x;
-	// 	s.y2 = g.vectors[i + 1].y;
-	// 	put_segment(s, image);
-	// 	++i;
-	// }
-	i = 0;
-	j = 0;
-	// while (i < 20)
-	// {
-	// 	t_segment s;
-	//  	s.x1 = g.vectors[i].x;
-	// 	s.y1 = g.vectors[i].y;
-	// 	s.x2 = g.vectors[i + 5].x;
-	// 	s.y2 = g.vectors[i + 5].y;
-	// 	put_segment(s, image);
-	// 	++i;
-	// }
 	t_segment s;
- 	s.x1 = g.vectors[0].x;
-	s.y1 = g.vectors[0].y;
-	s.x2 = g.vectors[4].x;
-	s.y2 = g.vectors[4].y;
+	s.a.x = g.vectors[0].x;
+	s.a.y = g.vectors[0].y;
+	s.b.x = g.vectors[16].x;
+	s.b.y = g.vectors[16].y;
+
 	put_segment(s, image);
 
 	mlx_put_image_to_window(g.mlx, g.win, g.image, 0, 0);

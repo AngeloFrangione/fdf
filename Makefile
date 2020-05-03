@@ -3,56 +3,89 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+         #
+#    By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/21 01:50:24 by afrangio          #+#    #+#              #
-#    Updated: 2019/03/15 16:45:42 by afrangio         ###   ########.fr        #
+#    Updated: 2020/05/03 23:39:31 by anonymous        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Fix nvme for 2015 mbp
+# ONOSCOPE		=	-fsanitize=address	\
+# 					-fno-omit-frame-pointer		\
+# 					-fsanitize-address-use-after-scope
+
 
 NAME			=	fdf
-CC				=	clang
-ONOSCOPE		=	-fsanitize=address	\
-					-fno-omit-frame-pointer		\
-					-fsanitize-address-use-after-scope -g
-CFLAGS			:=	-Wall -Wno-cast-align\
-					-Wextra
-NOSCOPE			=	-g -std=c89 \
-					-Weverything \
-					-Wno-padded
-SOURCES			=	srcs/main.c
-INCLUDES		=	includes/fdf.h
-SRCS 			=	$(SOURCES) 
-OFILES			=	${SRCS:.c=.o}
+CC				=   gcc -g
 
-LIBS			=	-lmlx -framework OpenGL -framework AppKit
+CFLAGS			:=	-Wall \
+					-Wextra \
+					-Iincludes/ \
+					-Ilibft/includes/
+
+LDFLAGS			:=  libft/libft.a -lm
+LINUX			=   minilibx_linux/libmlx_x86_64.a -lX11 -lXext
+MACOS			=   -framework OpenGL
+
+IMACOS			=   -Iminilibx_macos/
+ILINUX			=   -Iminilibx_linux/
+
+MLX_LINUX		=   minilibx_linux
+MLX_MACOS		=   minilibx_macos
+
+INCLUDES 		=   includes/fdf.h
+SRCS			=	srcs/main.c \
+					srcs/bresenham.c
+
+
+
+
+
+OBJECTS			=	${SRCS:.c=.o}
+
+
+UNAME_S := $(shell uname -s)
+NPROC := $(nproc)
+
+ifeq ($(UNAME_S),Linux)
+	LDFLAGS := $(LDFLAGS) $(LINUX)
+	CFLAGS := $(CFLAGS) $(ILINUX)
+	MLX = $(MLX_LINUX)
+endif
+ifeq ($(UNAME_S),Darwin)
+	LDFLAGS := $(LDFLAGS) $(MACOS)
+	CFLAGS := $(CFLAGS) $(IMACOS)
+	MLX = $(MLX_MACOS)
+endif
+
+
 
 all: $(NAME)
 
-$(NAME): libft $(OFILES)
-	$(CC) $(OFILES)  $(OFLAGS) $(LIBS) libft/libft.a -o $(NAME)
+$(NAME): mlx libft $(OBJECTS)
+	@echo linking objects
+	$(CC) $(OBJECTS)  $(LDFLAGS) -o $(NAME)
 
 %.o: %.c $(INCLUDES)
-	$(CC)  $< -c $(CFLAGS) -Iincludes -Ilibft/includes -o $@
+	@echo compiling objects
+	$(CC) -c $(CFLAGS) -o $@ $<
 
-noscope: CFLAGS += $(NOSCOPE) 
-noscope: OFLAGS = $(ONOSCOPE)
-noscope: all
 
 libft: libft/libft.a
 
+mlx:
+	make -C $(MLX)
+
 libft/libft.a:
-	make -C libft/
+	make -C libft/ -j$(NPROC)
 
 clean:
-	/bin/rm -f $(OFILES)
+	make -C $(MLX) clean
 	make -C libft/ clean
+	rm -f $(OBJECTS)
 
 fclean: clean
 	make -C libft/ fclean
-	@/bin/rm -f $(NAME)
-	@/bin/rm -rf $(NAME).dSYM/
+	rm -f $(NAME)
 
 re: fclean all
