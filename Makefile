@@ -6,7 +6,7 @@
 #    By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/21 01:50:24 by afrangio          #+#    #+#              #
-#    Updated: 2020/05/03 23:39:31 by anonymous        ###   ########.fr        #
+#    Updated: 2020/05/04 17:24:32 by anonymous        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,9 +60,9 @@ endif
 
 
 
-all: $(NAME)
+all: mlx libft $(NAME)
 
-$(NAME): mlx libft $(OBJECTS)
+$(NAME): $(OBJECTS) 
 	@echo linking objects
 	$(CC) $(OBJECTS)  $(LDFLAGS) -o $(NAME)
 
@@ -73,19 +73,19 @@ $(NAME): mlx libft $(OBJECTS)
 
 libft: libft/libft.a
 
-mlx:
-	make -C $(MLX)
+mlx: $(MLX)
+	@make -C $(MLX)
 
 libft/libft.a:
-	make -C libft/ -j$(NPROC)
+	@make -C libft/ -j$(NPROC)
 
 clean:
-	make -C $(MLX) clean
-	make -C libft/ clean
-	rm -f $(OBJECTS)
+	@make -C $(MLX) clean
+	@make -C libft/ clean
+	@rm -f $(OBJECTS)
 
 fclean: clean
-	make -C libft/ fclean
-	rm -f $(NAME)
+	@make -C libft/ fclean
+	@rm -f $(NAME)
 
 re: fclean all

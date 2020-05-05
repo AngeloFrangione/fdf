@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 13:36:51 by afrangio          #+#    #+#             */
-/*   Updated: 2020/05/03 22:42:29 by anonymous        ###   ########.fr       */
+/*   Updated: 2020/05/05 18:35:52 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,22 @@ int			main(int ac, char **av)
 	t_gdata		g;
 	int			*image;
 	int 		i, j;
-	static int map[25] = {
-		0, 0,  0,  0,  0,
-		0, 0,  0,  0,  0,
-		0, 0, 10,  0,  0,
-		0, 0,  0,  0,  0,
-		0, 0,  0,  0,  0
+
+	// 19 * 11
+	int heigh = 11;
+	int width = 19;
+	static int map[11 * 19] = {
+		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+		0,  0, 10, 10,  0,  0, 10, 10,  0,  0,  0, 10, 10, 10, 10, 10,  0,  0,  0,
+		0,  0, 10, 10,  0,  0, 10, 10,  0,  0,  0,  0,  0,  0,  0, 10, 10,  0,  0,
+		0,  0, 10, 10,  0,  0, 10, 10,  0,  0,  0,  0,  0,  0,  0, 10, 10,  0,  0,
+		0,  0, 10, 10, 10, 10, 10, 10,  0,  0,  0,  0, 10, 10, 10, 10,  0,  0,  0,
+		0,  0,  0, 10, 10, 10, 10, 10,  0,  0,  0, 10, 10,  0,  0,  0,  0,  0,  0,
+		0,  0,  0,  0,  0,  0, 10, 10,  0,  0,  0, 10, 10,  0,  0,  0,  0,  0,  0,
+		0,  0,  0,  0,  0,  0, 10, 10,  0,  0,  0, 10, 10, 10, 10, 10, 10,  0,  0,
+		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+		0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0
 	};
 
 	if (ac != 2)
@@ -62,28 +72,81 @@ int			main(int ac, char **av)
 	image = (int*)mlx_get_data_addr(g.image, &(g.bpp), &(g.sl), &(g.endian));
 	i = 0;
 	j = 0;
-	while (i < 25)
+	while (i < heigh * width)
 	{
 		printf("i: %d | j: %d | \n", i, j); 
 		
-		g.vectors[i].x = (i % 5) * GRID_SPACEMENT + CORNER_SPACEMENT;
+		g.vectors[i].x = (i % width) * GRID_SPACEMENT + CORNER_SPACEMENT + map[i] ;
 		
-		g.vectors[i].y = (j % 5) * GRID_SPACEMENT + CORNER_SPACEMENT;
+		g.vectors[i].y = (j % heigh) * GRID_SPACEMENT + CORNER_SPACEMENT - map[i];
 		
 		g.vectors[i].z = map[i];
 		printf("x: %d | y: %d | z: %d |\n", g.vectors[i].x, g.vectors[i].y, map[i]); 
-		put_pixel(g.vectors[i].x, g.vectors[i].y, image);
+		if (g.vectors[i].z <= 0)
+			put_pixel(g.vectors[i].x, g.vectors[i].y, image);
+		else
+			put_pixel_c(g.vectors[i].x, g.vectors[i].y, g.vectors[i].z, image);
 		++i;
-		if (!(i % 5))
+		if (!(i % width))
 			++j;
 	}
-	t_segment s;
-	s.a.x = g.vectors[0].x;
-	s.a.y = g.vectors[0].y;
-	s.b.x = g.vectors[16].x;
-	s.b.y = g.vectors[16].y;
 
-	put_segment(s, image);
+	i = 0;
+	int a = 0;
+	int b = 0;
+/*	while (i < (heigh * width)) // Horizontal
+	{
+
+		if ((i + 1) % width > 0)
+		{
+			a = i;
+			b = i + 1;
+
+			t_segment s;
+
+			s.a.x = g.vectors[a].x;
+			s.a.y = g.vectors[a].y;
+
+			s.b.x = g.vectors[b].x;
+			s.b.y = g.vectors[b].y;
+			put_segment(s, image);
+		}
+		++i;
+	}
+	i = 0;
+	while (i < (heigh * width) - width) // vertical
+	{
+		a = i;
+		b = i + width;
+
+		t_segment s;
+
+		s.a.x = g.vectors[a].x;
+		s.a.y = g.vectors[a].y;
+
+		s.b.x = g.vectors[b].x;
+		s.b.y = g.vectors[b].y;
+		put_segment(s, image);
+		++i;
+	}
+*/
+
+	while (i < heigh * width)
+	{
+		a = 70;
+		b = i;
+
+		t_segment s;
+
+		s.a.x = g.vectors[a].x;
+		s.a.y = g.vectors[a].y;
+
+		s.b.x = g.vectors[b].x;
+		s.b.y = g.vectors[b].y;
+		put_segment(s, image);
+		++i;
+	}
+
 
 	mlx_put_image_to_window(g.mlx, g.win, g.image, 0, 0);
 	mlx_hook(g.win, 2, (1L<<0), key_hook, &g);

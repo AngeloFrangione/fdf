@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 13:36:51 by afrangio          #+#    #+#             */
-/*   Updated: 2020/05/03 22:37:29 by anonymous        ###   ########.fr       */
+/*   Updated: 2020/05/04 17:48:46 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,22 @@
 #include <stdio.h>
 #include "fdf.h"
 
+void put_pixel_c(int x, int y, int z, int *image)
+{
+	int coord;
+
+	coord = y * WIN_WIDTH + x;
+	if (coord < (WIN_HEIGHT * WIN_WIDTH))
+		image[coord] = z * 10;
+}
+
 void put_pixel(int x, int y, int *image)
 {
 	int coord;
 
 	coord = y * WIN_WIDTH + x;
 	if (coord < (WIN_HEIGHT * WIN_WIDTH))
-		image[coord] = 0xd30e0e;
+		image[coord] = 0xffffff;
 }
 
 static void swap(t_segment *s)

@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 16:49:13 by afrangio          #+#    #+#             */
-/*   Updated: 2020/05/03 22:47:55 by anonymous        ###   ########.fr       */
+/*   Updated: 2020/05/04 17:42:02 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FDF_H
 # define WIN_HEIGHT 600
 # define WIN_WIDTH 800
-# define GRID_SPACEMENT 50
+# define GRID_SPACEMENT 25
 # define CORNER_SPACEMENT 150
 
 #include "libft.h"
@@ -52,6 +52,7 @@ typedef struct s_gdata
 }				t_gdata;
 
 void put_pixel(int x, int y, int *image);
+void put_pixel_c(int x, int y, int z, int *image);
 void put_segment(t_segment s, int *image);
 
 #endif
