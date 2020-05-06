@@ -25,7 +25,7 @@ CFLAGS			:=	-Wall \
 
 LDFLAGS			:=  libft/libft.a -lm
 LINUX			=   minilibx_linux/libmlx_x86_64.a -lX11 -lXext
-MACOS			=   -framework OpenGL
+MACOS			=   minilibx_macos/libmlx.a -framework OpenGL -framework AppKit
 
 IMACOS			=   -Iminilibx_macos/
 ILINUX			=   -Iminilibx_linux/
