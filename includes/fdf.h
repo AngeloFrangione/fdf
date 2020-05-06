@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/21 16:49:13 by afrangio          #+#    #+#             */
-/*   Updated: 2020/05/06 00:22:13 by anonymous        ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef FDF_H
 # define FDF_H
 # define WIN_HEIGHT 800
@@ -59,6 +47,6 @@ int				key_hook(int keycode, t_gdata *g);
 
 void			put_pixel(int x, int y, int *image);
 void			put_pixel_c(int x, int y, int z, int *image);
-void			put_segment(t_segment s, int *image);
+void			put_segment(t_segment *s, int *image);
 
 #endif

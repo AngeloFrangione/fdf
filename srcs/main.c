@@ -1,13 +1,12 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
+/*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/15 13:36:51 by afrangio          #+#    #+#             */
-/*   Updated: 2020/05/05 23:01:29 by anonymous        ###   ########.fr       */
+/*   Created: 2020/05/06 17:10:09 by afrangio          #+#    #+#             */
+/*   Updated: 2020/05/06 18:50:38 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +101,7 @@ int			main(int ac, char **av)
 
 			s.b.x = g.vectors[b].x;
 			s.b.y = g.vectors[b].y;
-			put_segment(s, g.pixelmap);
+			put_segment(&s, g.pixelmap);
 		}
 		++i;
 	}
@@ -119,7 +118,7 @@ int			main(int ac, char **av)
 
 		s.b.x = g.vectors[b].x;
 		s.b.y = g.vectors[b].y;
-		put_segment(s, g.pixelmap);
+		put_segment(&s, g.pixelmap);
 		++i;
 	}
 
