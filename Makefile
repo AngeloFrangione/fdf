@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+         #
+#    By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/21 01:50:24 by afrangio          #+#    #+#              #
-#    Updated: 2020/05/05 22:19:45 by anonymous        ###   ########.fr        #
+#    Updated: 2020/05/06 20:16:20 by afrangio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,12 +36,11 @@ MLX_MACOS		=   minilibx_macos
 INCLUDES 		=   includes/fdf.h
 SRCS			=	srcs/main.c \
 					srcs/bresenham.c \
-					srcs/pixel.c \
-					srcs/mlx.c 
-
-
-
-
+					srcs/parsing.c \
+					srcs/put_pixel.c \
+					srcs/projection.c \
+					srcs/mlx.c \
+					srcs/link_points.c 
 
 OBJECTS			=	${SRCS:.c=.o}
 
