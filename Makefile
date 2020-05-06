@@ -6,7 +6,7 @@
 #    By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/21 01:50:24 by afrangio          #+#    #+#              #
-#    Updated: 2020/05/04 17:24:32 by anonymous        ###   ########.fr        #
+#    Updated: 2020/05/05 22:19:45 by anonymous        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,9 @@ MLX_MACOS		=   minilibx_macos
 
 INCLUDES 		=   includes/fdf.h
 SRCS			=	srcs/main.c \
-					srcs/bresenham.c
+					srcs/bresenham.c \
+					srcs/pixel.c \
+					srcs/mlx.c 
 
 
 
