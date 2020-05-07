@@ -6,7 +6,7 @@
 #    By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/21 01:50:24 by afrangio          #+#    #+#              #
-#    Updated: 2020/05/07 18:30:16 by afrangio         ###   ########.fr        #
+#    Updated: 2020/05/07 23:55:30 by afrangio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,12 @@
 
 
 NAME			=	fdf
-CC				=   gcc -g
+CC				=   clang -g
 
 CFLAGS			:=	-Wall \
 					-Wextra \
 					-Iincludes/ \
 					-Ilibft/includes/ \
-					-Wno-override-init
 
 LDFLAGS			:=  libft/libft.a -lm
 LINUX			=   minilibx_linux/libmlx_x86_64.a -lX11 -lXext
@@ -36,7 +35,8 @@ MLX_MACOS		=   minilibx_macos
 
 INCLUDES 		=   includes/fdf.h
 SRCS			=	srcs/main.c \
-					srcs/bresenham.c \
+					srcs/put_segment.c \
+					srcs/read_map.c \
 					srcs/parsing.c \
 					srcs/put_pixel.c \
 					srcs/projection.c \
