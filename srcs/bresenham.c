@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 18:51:27 by afrangio          #+#    #+#             */
-/*   Updated: 2020/05/06 18:59:55 by afrangio         ###   ########.fr       */
+/*   Updated: 2020/05/07 22:46:45 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	swap(t_segment *s)
 	s->b = tmp;
 }
 
-void		put_segment(t_segment *s, int *image)
+void		put_segment(t_segment *s, int *image, int z)
 {
 	float y;
 	float x;
@@ -36,17 +36,17 @@ void		put_segment(t_segment *s, int *image)
 	m = (float)(s->b.y - s->a.y) / (float)(s->b.x - s->a.x);
 	while ((m < -1) & (y > s->b.y))
 	{
-		put_pixel(round(x), round(y--), image);
+		put_pixel(round(x), round(y--), z, image);
 		x -= 1 / m;
 	}
 	while ((m >= -1) & (m <= 1) & (x < s->b.x))
 	{
-		put_pixel(round(x++), round(y), image);
+		put_pixel(round(x++), round(y), z, image);
 		y += m;
 	}
 	while ((m > 1) & (y < s->b.y))
 	{
-		put_pixel(round(x), round(y++), image);
+		put_pixel(round(x), round(y++), z, image);
 		x += 1 / m;
 	}
 }

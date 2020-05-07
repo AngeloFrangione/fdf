@@ -46,9 +46,8 @@ void			free_mlx(t_gdata *g);
 int				key_hook(int keycode, t_gdata *g);
 
 void			read_map(t_gdata *g, char **av);
-void			put_pixel(int x, int y, int *image);
-void			put_pixel_c(int x, int y, int z, int *image);
-void			put_segment(t_segment *s, int *image);
+void			put_pixel(int x, int y, int z, int *image);
+void			put_segment(t_segment *s, int *image, int z);
 void			link_points(t_gdata *g);
 void			projection(t_gdata *g);
 

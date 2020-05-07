@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 20:04:29 by afrangio          #+#    #+#             */
-/*   Updated: 2020/05/07 22:04:26 by afrangio         ###   ########.fr       */
+/*   Updated: 2020/05/07 22:47:02 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void projection(t_gdata *g)
 	g->vectors = vectors;
 	while (i < g->height * g->width)
 	{
-		x = (grid_spacement * (i % g->width)) + g->map[i] * 2;
-		y = (grid_spacement * (j % g->height)) - g->map[i] * 2;
+		x = (grid_spacement * (i % g->width)) + g->map[i];
+		y = (grid_spacement * (j % g->height)) - g->map[i];
 		g->vectors[i].x = x;
 		g->vectors[i].y = y;
 		g->vectors[i].z = g->map[i];
-		put_pixel(g->vectors[i].x, g->vectors[i].y, (g->pixelmap));
+		put_pixel(g->vectors[i].x, g->vectors[i].y, g->map[i], (g->pixelmap));
 		++i;
 		if (!(i % g->width))
 			++j;

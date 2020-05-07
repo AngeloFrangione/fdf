@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 17:10:09 by afrangio          #+#    #+#             */
-/*   Updated: 2020/05/07 20:45:28 by afrangio         ###   ########.fr       */
+/*   Updated: 2020/05/07 22:08:38 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ static void	parsing(t_gdata *g, unsigned char *file, int len)
 	void (*p[256]) (t_gdata *g, unsigned char c) = {
 			[0 ... 255] = error,
 			['0' ... '9'] = number,
+			['-'] = number,
 			[' '] = space,
 			['\n'] = line_break
 	};
