@@ -6,7 +6,7 @@
 #    By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/21 01:50:24 by afrangio          #+#    #+#              #
-#    Updated: 2020/05/06 20:16:20 by afrangio         ###   ########.fr        #
+#    Updated: 2020/05/07 18:30:16 by afrangio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ CC				=   gcc -g
 CFLAGS			:=	-Wall \
 					-Wextra \
 					-Iincludes/ \
-					-Ilibft/includes/
+					-Ilibft/includes/ \
+					-Wno-override-init
 
 LDFLAGS			:=  libft/libft.a -lm
 LINUX			=   minilibx_linux/libmlx_x86_64.a -lX11 -lXext

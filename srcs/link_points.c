@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 19:07:03 by afrangio          #+#    #+#             */
-/*   Updated: 2020/05/06 19:15:03 by afrangio         ###   ########.fr       */
+/*   Updated: 2020/05/07 21:35:58 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	link_horizontal(t_gdata *g)
 	int i = 0;
 	int a = 0;
 	int b = 0;
-	
+
 	while (i < (g->height * g->width))
 	{
 
@@ -30,7 +30,6 @@ static void	link_horizontal(t_gdata *g)
 
 			s.a.x = g->vectors[a].x;
 			s.a.y = g->vectors[a].y;
-
 			s.b.x = g->vectors[b].x;
 			s.b.y = g->vectors[b].y;
 			put_segment(&s, g->pixelmap);

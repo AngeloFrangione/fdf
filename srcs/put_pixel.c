@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/05 22:16:38 by anonymous         #+#    #+#             */
-/*   Updated: 2020/05/06 19:05:50 by afrangio         ###   ########.fr       */
+/*   Updated: 2020/05/07 21:43:44 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,17 @@
 void	put_pixel_c(int x, int y, int z, int *image)
 {
 	int coord;
+	int color;
 
+	
+	if (z)
+		color = 0xffffff;
+	else
+		color = 0xffffff;
 	coord = y * WIN_WIDTH + x;
 	if (coord < (WIN_HEIGHT * WIN_WIDTH))
-		image[coord] = z * 10;
+		if (coord > 0)
+			image[coord] = color;
 }
 
 void	put_pixel(int x, int y, int *image)
@@ -27,5 +34,7 @@ void	put_pixel(int x, int y, int *image)
 
 	coord = y * WIN_WIDTH + x;
 	if (coord < (WIN_HEIGHT * WIN_WIDTH))
-		image[coord] = 0xffffff;
+		if (x < WIN_WIDTH && y < WIN_HEIGHT)
+			if (coord > 0)
+				image[coord] = 0xffffff;
 }
