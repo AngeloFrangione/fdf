@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 17:10:09 by afrangio          #+#    #+#             */
-/*   Updated: 2020/05/08 00:01:18 by afrangio         ###   ########.fr       */
+/*   Updated: 2020/05/08 00:56:07 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	error(t_gdata *g, unsigned char c)
 void		parsing(t_gdata *g, unsigned char *file, int len)
 {
 	int		i;
-	t_func	p[256];
+	void	(*p[256]) (t_gdata *g, unsigned char c);
 
 	i = -1;
 	while (++i < 255)
