@@ -6,7 +6,7 @@
 #    By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/21 01:50:24 by afrangio          #+#    #+#              #
-#    Updated: 2020/05/07 23:55:30 by afrangio         ###   ########.fr        #
+#    Updated: 2020/05/09 00:59:28 by afrangio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,14 +16,18 @@
 
 
 NAME			=	fdf
-CC				=   clang -g
+CC				=   gcc -g
 
 CFLAGS			:=	-Wall \
 					-Wextra \
 					-Iincludes/ \
 					-Ilibft/includes/ \
 
-LDFLAGS			:=  libft/libft.a -lm
+
+LDFLAGS			:=  libft/libft.a -lm \
+					-fsanitize=address	\
+					-fno-omit-frame-pointer		\
+					-fsanitize-address-use-after-scope
 LINUX			=   minilibx_linux/libmlx_x86_64.a -lX11 -lXext
 MACOS			=   minilibx_macos/libmlx.a -framework OpenGL -framework AppKit
 
@@ -41,6 +45,7 @@ SRCS			=	srcs/main.c \
 					srcs/put_pixel.c \
 					srcs/projection.c \
 					srcs/mlx.c \
+					srcs/key_hook.c \
 					srcs/link_points.c 
 
 OBJECTS			=	${SRCS:.c=.o}

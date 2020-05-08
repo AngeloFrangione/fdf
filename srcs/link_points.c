@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 19:07:03 by afrangio          #+#    #+#             */
-/*   Updated: 2020/05/07 23:23:36 by afrangio         ###   ########.fr       */
+/*   Updated: 2020/05/08 22:50:24 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	link_horizontal(t_gdata *g)
 			s.a.y = g->vectors[a].y;
 			s.b.x = g->vectors[b].x;
 			s.b.y = g->vectors[b].y;
-			put_segment(&s, g->pixelmap, g->vectors[a].z);
+			put_segment(&s, g->pixelmap, g->vectors[b].z);
 		}
 		++i;
 	}

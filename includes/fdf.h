@@ -13,12 +13,20 @@
 # define KEY_DOWN 125
 # define KEY_RIGHT 124
 # define KEY_LEFT 123
+# define KEY_MINUS 0
+# define KEY_PLUS 0
+# define MOUSE_FRONT 0
+# define MOUSE_BACK 0
 # elif __unix
 # define KEY_ESC 65307
 # define KEY_UP 65362
 # define KEY_DOWN 65364
 # define KEY_RIGHT 65363
 # define KEY_LEFT 65361
+# define KEY_MINUS 65453
+# define KEY_PLUS 65451
+# define MOUSE_FRONT 5
+# define MOUSE_BACK 4
 # endif
 
 typedef struct	s_vector
@@ -54,7 +62,8 @@ typedef struct	s_gdata
 	int			width;
 	int			height;
 	int32_t		up_down;		
-	int32_t		left_right;		
+	int32_t		left_right;
+	float		zoom;
 }				t_gdata;
 
 void			initiate_mlx(t_gdata *g);
