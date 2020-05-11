@@ -6,7 +6,7 @@
 #    By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/21 01:50:24 by afrangio          #+#    #+#              #
-#    Updated: 2020/05/09 23:00:55 by afrangio         ###   ########.fr        #
+#    Updated: 2020/05/11 18:31:24 by afrangio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,10 @@ SRCS			=	srcs/main.c \
 					srcs/mlx.c \
 					srcs/update_caption.c \
 					srcs/rotation.c \
-					srcs/key_hook.c \
+					srcs/hooks.c \
+					srcs/keys_move.c \
+					srcs/keys_rotate.c \
+					srcs/keys_other.c \
 					srcs/link_points.c 
 
 OBJECTS			=	${SRCS:.c=.o}

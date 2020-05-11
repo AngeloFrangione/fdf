@@ -135,4 +135,17 @@ void			projection(t_gdata *g);
 void			parsing(t_gdata *g, unsigned char *file, int len);
 void			update_caption(t_gdata *g);
 
+void			k_move_x(t_gdata *g, int keycode);
+void			k_move_y(t_gdata *g, int keycode);
+void			k_zoom(t_gdata *g, int keycode);
+void			k_change_projection(t_gdata *g, int keycode);
+void			k_change_delta(t_gdata *g, int keycode);
+void			k_reset_values(t_gdata *g, int keycode);
+void			k_change_depth(t_gdata *g, int keycode);
+void			k_change_color_mode(t_gdata *g, int keycode);
+void			k_rotate_x(t_gdata *g, int keycode);
+void			k_rotate_y(t_gdata *g, int keycode);
+void			k_rotate_z(t_gdata *g, int keycode);
+
+
 #endif
