@@ -6,15 +6,12 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 17:10:09 by afrangio          #+#    #+#             */
-/*   Updated: 2020/05/08 00:56:07 by afrangio         ###   ########.fr       */
+/*   Updated: 2020/05/10 20:51:59 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include "fdf.h"
-
-static char g_buf[6] = {0};
-static int g_map_state = 0;
 
 static void	number(t_gdata *g, unsigned char c)
 {
@@ -22,41 +19,46 @@ static void	number(t_gdata *g, unsigned char c)
 
 	(void)g;
 	i = 0;
-	while (g_buf[i] != 0 && i < 6)
+	if ((c == '-') & (g->buf[0]))
+	{
+		ft_putstr("map error\n");
+		exit(2);
+	}
+	while (g->buf[i] != 0 && i < 6)
 		i++;
-	g_buf[i] = c;
+	g->buf[i] = c;
 }
 
 static void	space(t_gdata *g, unsigned char c)
 {
 	(void)c;
-	if (g_buf[0] != 0)
+	if (g->buf[0] != 0)
 	{
-		g->map[g_map_state] = ft_atoi(g_buf);
-		g_map_state++;
-		ft_bzero(g_buf, 6);
+		g->map[g->map_state] = ft_atoi(g->buf);
+		g->map_state++;
+		ft_bzero(g->buf, 6);
 	}
 }
 
 static void	line_break(t_gdata *g, unsigned char c)
 {
 	(void)c;
-	if (g_buf[0] != 0)
+	if (g->buf[0] != 0)
 	{
-		g->map[g_map_state] = ft_atoi(g_buf);
-		g_map_state++;
-		ft_bzero(g_buf, 6);
+		g->map[g->map_state] = ft_atoi(g->buf);
+		g->map_state++;
+		ft_bzero(g->buf, 6);
 	}
 	if (g->width)
 	{
-		if (g_map_state % g->width)
+		if (g->map_state % g->width)
 		{
 			ft_putstr("map error\n");
 			exit(2);
 		}
 	}
 	else
-		g->width = g_map_state;
+		g->width = g->map_state;
 	g->height++;
 }
 
@@ -72,7 +74,10 @@ void		parsing(t_gdata *g, unsigned char *file, int len)
 {
 	int		i;
 	void	(*p[256]) (t_gdata *g, unsigned char c);
+	char	buf[6];
 
+	g->map_state = 0;
+	g->buf = buf;
 	i = -1;
 	while (++i < 255)
 		p[i] = error;

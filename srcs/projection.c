@@ -6,48 +6,143 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 20:04:29 by afrangio          #+#    #+#             */
-/*   Updated: 2020/05/08 23:17:36 by afrangio         ###   ########.fr       */
+/*   Updated: 2020/05/11 17:35:28 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "fdf.h"
 
-void	projection(t_gdata *g)
+static void	iso2(t_gdata *g)
 {
-	static t_vector	vectors[MAP_SIZE];
-	float				grid_spacement;
 	int				i;
 	int				j;
-	float				x;
-	float				z;
-	float				y;
 
 	i = 0;
 	j = 0;
-	g->vectors = vectors;
 	while (i < g->height * g->width)
 	{
-		x = (g->zoom * (i % g->width))  + g->left_right;
-		y = (g->zoom * (j % g->height)) + g->up_down;
-		z = g->map[i];
-
-		float angle = 0.8;
-		float x_tmp = x;
-		float y_tmp = y;
-		float z_tmp = z;
-
-		x = x_tmp * 1; 
-		y = x_tmp * 0 + y_tmp * cos(angle) + z_tmp * -sin(angle);
-		z = x_tmp * 0 + y_tmp * sin(angle) + z_tmp * cos(angle);
-
-		g->vectors[i].x = x + g->map[i];
-		g->vectors[i].y = y - g->map[i];
+		// Coordonnées initiales
+		g->vectors[i].x = ((i % g->width));
+		g->vectors[i].y = ((j % g->height));
 		g->vectors[i].z = g->map[i];
-
-		put_pixel(g->vectors[i].x, g->vectors[i].y, g->map[i], (g->pixelmap));
+		// Profondeur
+		g->vectors[i].x = (g->vectors[i].x + g->map[i] * g->depth);
+		g->vectors[i].y = (g->vectors[i].y - g->map[i] * g->depth);
+		// Zoom
+		g->vectors[i].x = g->vectors[i].x * g->zoom;
+		g->vectors[i].y = g->vectors[i].y * g->zoom;
+		// Rotation X
+		rotation_x(g, &i);
+		// Rotation Y
+		rotation_y(g, &i);
+		// Rotation Z
+		rotation_z(g, &i);
+		// Déplacement
+		g->vectors[i].x = g->left_right + g->vectors[i].x;
+		g->vectors[i].y = g->up_down + g->vectors[i].y;
 		++i;
 		if (!(i % g->width))
 			++j;
 	}
+}
+
+
+
+
+static void	iso(t_gdata *g)
+{
+	int				i;
+	int				j;
+
+	i = 0;
+	j = 0;
+	while (i < g->height * g->width)
+	{
+		// Coordonnées initiales
+		g->vectors[i].x = ((i % g->width));
+		g->vectors[i].y = ((j % g->height));
+		g->vectors[i].z = g->map[i];
+		// Zoom
+		g->vectors[i].x = g->vectors[i].x * g->zoom;
+		g->vectors[i].y = g->vectors[i].y * g->zoom;
+		// Rotation X
+		rotation_x(g, &i);
+		// Rotation Y
+		rotation_y(g, &i);
+		// Rotation Z
+		rotation_z(g, &i);
+		// Déplacement
+		g->vectors[i].x = g->left_right + g->vectors[i].x;
+		g->vectors[i].y = g->up_down + g->vectors[i].y;
+		// Profondeur
+		g->vectors[i].x = (g->vectors[i].x + g->map[i] * g->depth);
+		g->vectors[i].y = (g->vectors[i].y - g->map[i] * g->depth);
+		++i;
+		if (!(i % g->width))
+			++j;
+	}
+}
+
+static void	oblique(t_gdata *g)
+{
+	int				i;
+	int				j;
+
+	i = 0;
+	j = 0;
+	while (i < g->height * g->width)
+	{
+		// Coordonnées initiales
+		g->vectors[i].x = ((i % g->width));
+		g->vectors[i].y = ((j % g->height));
+		g->vectors[i].z = g->map[i];
+		// Profondeur
+		g->vectors[i].x = (g->vectors[i].x + g->map[i] * g->depth);
+		g->vectors[i].y = (g->vectors[i].y - g->map[i] * g->depth);
+		// Zoom
+		g->vectors[i].x = g->vectors[i].x * g->zoom;
+		g->vectors[i].y = g->vectors[i].y * g->zoom;
+		// Déplacement
+		g->vectors[i].x = g->left_right + g->vectors[i].x;
+		g->vectors[i].y = g->up_down + g->vectors[i].y;
+
+		++i;
+		if (!(i % g->width))
+			++j;
+	}
+}
+
+static void	flat(t_gdata *g)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (i < g->height * g->width)
+	{
+		g->vectors[i].x = i % g->width;
+		g->vectors[i].y = j % g->height;
+		g->vectors[i].z = g->map[i] * g->depth;
+		g->vectors[i].x = g->left_right + g->vectors[i].x * g->zoom;
+		g->vectors[i].y = g->up_down + g->vectors[i].y * g->zoom;
+		++i;
+		if (!(i % g->width))
+			++j;
+	}
+}
+
+void		projection(t_gdata *g)
+{
+	static t_vector	vectors[MAP_SIZE];
+	g->vectors = vectors;
+	if (g->projection == 1)
+		flat(g);
+	else if (g->projection == 2)
+		oblique(g);
+	else if (g->projection == 3)
+		iso(g);
+	else if (g->projection == 4)
+		iso2(g);
 }

@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 17:10:09 by afrangio          #+#    #+#             */
-/*   Updated: 2020/05/09 01:29:42 by afrangio         ###   ########.fr       */
+/*   Updated: 2020/05/11 00:17:23 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,13 @@ int			main(int ac, char **av)
 	g.height = 0;
 	g.up_down = 0;
 	g.left_right = 0;
-	g.zoom = 1;
+	g.projection = 1;
+	g.angle_x = 0.5;
+	g.angle_y = 0.5;
+	g.angle_z = 0;
+	g.delta = 1;
+	g.depth = 1;
+	g.color = 0;
 	if (ac != 2)
 	{
 		ft_putstr("Wrong argument, usage: fdf <map>\n");
@@ -32,8 +38,9 @@ int			main(int ac, char **av)
 	projection(&g);
 	link_points(&g);
 	mlx_put_image_to_window(g.mlx, g.mlx_win, g.mlx_image, 0, 0);
-	mlx_key_hook(g.mlx_win, key_hook, &g);
-	mlx_mouse_hook(g.mlx_win, key_hook, &g);
-
+	mlx_hook(g.mlx_win, 2, 1L, key_hook, &g);
+	mlx_mouse_hook(g.mlx_win, mouse_hook, &g);
+	mlx_hook(g.mlx_win, 17, 1L << 17, &free_mlx, &g);
+	update_caption(&g);
 	mlx_loop(g.mlx);
 }
