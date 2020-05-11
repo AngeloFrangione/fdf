@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/05 22:18:19 by anonymous         #+#    #+#             */
-/*   Updated: 2020/05/10 22:01:12 by afrangio         ###   ########.fr       */
+/*   Updated: 2020/05/11 19:45:04 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	create_image_mlx(t_gdata *g)
 		g->mlx_image, &g->bits_per_pixel, &g->size_line, &g->endian);
 }
 
-int	free_mlx(t_gdata *g)
+int		free_mlx(t_gdata *g)
 {
 	mlx_destroy_image(g->mlx, g->mlx_image);
 	mlx_destroy_window(g->mlx, g->mlx_win);

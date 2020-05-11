@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 17:10:09 by afrangio          #+#    #+#             */
-/*   Updated: 2020/05/11 00:17:23 by afrangio         ###   ########.fr       */
+/*   Updated: 2020/05/11 19:36:48 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,7 @@ int			main(int ac, char **av)
 
 	g.width = 0;
 	g.height = 0;
-	g.up_down = 0;
-	g.left_right = 0;
-	g.projection = 1;
-	g.angle_x = 0.5;
-	g.angle_y = 0.5;
-	g.angle_z = 0;
-	g.delta = 1;
-	g.depth = 1;
-	g.color = 0;
+	k_reset_values(&g, 0);
 	if (ac != 2)
 	{
 		ft_putstr("Wrong argument, usage: fdf <map>\n");

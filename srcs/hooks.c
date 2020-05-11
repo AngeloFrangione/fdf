@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 23:25:41 by afrangio          #+#    #+#             */
-/*   Updated: 2020/05/11 18:48:04 by afrangio         ###   ########.fr       */
+/*   Updated: 2020/05/11 20:14:48 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,8 @@ int			key_hook(int keycode, t_gdata *g)
 {
 	void	(*p[600]) (t_gdata *g, int keycode);
 	int		i;
+	ft_putstr("keycode: ");
 	ft_putnbr(keycode);
-	ft_putstr(" | ");
-	ft_putnbr(keycode % 65000);
 	ft_putstr("\n");
 	if (keycode == KEY_ESC)
 		free_mlx(g);
@@ -61,7 +60,7 @@ int			key_hook(int keycode, t_gdata *g)
 	while (++i < 600)
 		p[i] = NULL;
 	init_keys(p);
-	if (p[keycode % 65000] == 0)
+	if (keycode % 65000 > 600 || p[keycode % 65000] == 0)
 		return (0);
 	if (keycode % 65000 < 600)
 	{

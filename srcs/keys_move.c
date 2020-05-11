@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 17:43:04 by afrangio          #+#    #+#             */
-/*   Updated: 2020/05/11 18:10:58 by afrangio         ###   ########.fr       */
+/*   Updated: 2020/05/11 19:45:52 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	k_move_x(t_gdata *g, int keycode)
 {
 	g->left_right += (keycode == KEY_LEFT) ? 50 * g->delta : -50 * g->delta;
 }
-
 
 void	k_move_y(t_gdata *g, int keycode)
 {

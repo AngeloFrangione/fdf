@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/11 17:58:36 by afrangio          #+#    #+#             */
-/*   Updated: 2020/05/11 18:50:03 by afrangio         ###   ########.fr       */
+/*   Updated: 2020/05/11 19:45:20 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ void	k_reset_values(t_gdata *g, int keycode)
 	g->angle_z = 0;
 	g->delta = 1;
 	g->depth = 0.1;
-	g->zoom = WIN_WIDTH / g->width;
+	g->color = 0;
+	if (g->width)
+		g->zoom = WIN_WIDTH / g->width;
 	g->zoom = g->zoom / 2;
 	if (g->zoom < 1)
 		g->zoom = 1;
@@ -38,7 +40,6 @@ void	k_reset_values(t_gdata *g, int keycode)
 void	k_change_depth(t_gdata *g, int keycode)
 {
 	g->depth += (keycode == KEY_X) ? 0.2 : -0.2;
-
 }
 
 void	k_change_color_mode(t_gdata *g, int keycode)
