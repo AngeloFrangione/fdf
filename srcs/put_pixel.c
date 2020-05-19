@@ -46,7 +46,7 @@ int		offset_color(int color, t_gdata *gd)
 		color *= 5;
 	r = (-color & 0xFF0000) / 0xF0000;
 	g = (-color & 0x00FF00) / 0x100 - 1;
-	b = (-color & 0x0000FF - 1);
+	b = (-color & 0x0000FF) - 1;
 	if (gd->color)
 		transform_hue(&r, &g, &b, color * 10);
 	return (0x10000 * r + 0x100 * g + b);

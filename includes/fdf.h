@@ -1,7 +1,7 @@
 #ifndef FDF_H
 # define FDF_H
-# define WIN_HEIGHT 1000
-# define WIN_WIDTH 1900
+# define WIN_HEIGHT 600
+# define WIN_WIDTH 1000
 # define READ_BUFFER 4096
 # define MAP_SIZE 6000000
 # define NB_PROJECTIONS 4

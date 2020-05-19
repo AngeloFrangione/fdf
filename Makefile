@@ -10,13 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-# ONOSCOPE		=	-fsanitize=address	\
-# 					-fno-omit-frame-pointer		\
-# 					-fsanitize-address-use-after-scope
-
-
 NAME			=	fdf
-CC				=   gcc -g
+CC				=   gcc
 
 CFLAGS			:=	-Wall \
 					-Wextra \
@@ -24,10 +19,7 @@ CFLAGS			:=	-Wall \
 					-Ilibft/includes/ \
 
 
-LDFLAGS			:=  libft/libft.a -lm  \
-					-fsanitize=address	\
-					-fno-omit-frame-pointer	\
-					-fsanitize-address-use-after-scope
+LDFLAGS			:=  libft/libft.a -lm
 LINUX			=   minilibx_linux/libmlx_x86_64.a -lX11 -lXext
 MACOS			=   minilibx_macos/libmlx.a -framework OpenGL -framework AppKit
 
