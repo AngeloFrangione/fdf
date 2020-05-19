@@ -6,7 +6,7 @@
 #    By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/21 01:50:24 by afrangio          #+#    #+#              #
-#    Updated: 2020/05/11 18:31:24 by afrangio         ###   ########.fr        #
+#    Updated: 2020/05/14 02:59:55 by afrangio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CFLAGS			:=	-Wall \
 					-Ilibft/includes/ \
 
 
-LDFLAGS			:=  libft/libft.a -lm   \
+LDFLAGS			:=  libft/libft.a -lm  \
 					-fsanitize=address	\
 					-fno-omit-frame-pointer	\
 					-fsanitize-address-use-after-scope
@@ -72,9 +72,9 @@ endif
 
 
 
-all: mlx libft $(NAME)
+all: $(NAME)
 
-$(NAME): $(OBJECTS) 
+$(NAME): mlx libft $(OBJECTS) 
 	@echo linking objects
 	$(CC) $(OBJECTS)  $(LDFLAGS) -o $(NAME)
 

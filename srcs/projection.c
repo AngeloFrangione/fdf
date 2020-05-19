@@ -102,7 +102,7 @@ static void	flat(t_gdata *g)
 	{
 		g->vectors[i].x = i % g->width;
 		g->vectors[i].y = j % g->height;
-		g->vectors[i].z = g->map[i] * g->depth;
+		g->vectors[i].z = g->map[i];
 		g->vectors[i].x = g->left_right + g->vectors[i].x * g->zoom;
 		g->vectors[i].y = g->up_down + g->vectors[i].y * g->zoom;
 		++i;

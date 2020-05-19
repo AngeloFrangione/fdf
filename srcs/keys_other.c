@@ -28,7 +28,7 @@ void	k_reset_values(t_gdata *g, int keycode)
 	g->angle_y = 0.5;
 	g->angle_z = 0;
 	g->delta = 1;
-	g->depth = 0.1;
+	g->depth = 1;
 	g->color = 0;
 	if (g->width)
 		g->zoom = WIN_WIDTH / g->width;
@@ -39,7 +39,7 @@ void	k_reset_values(t_gdata *g, int keycode)
 
 void	k_change_depth(t_gdata *g, int keycode)
 {
-	g->depth += (keycode == KEY_X) ? 0.2 : -0.2;
+	g->depth += (keycode == KEY_X) ? 0.1 : -0.1;
 }
 
 void	k_change_color_mode(t_gdata *g, int keycode)

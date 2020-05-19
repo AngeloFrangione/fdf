@@ -1,7 +1,7 @@
 #ifndef FDF_H
 # define FDF_H
-# define WIN_HEIGHT 600
-# define WIN_WIDTH 1000
+# define WIN_HEIGHT 1000
+# define WIN_WIDTH 1900
 # define READ_BUFFER 4096
 # define MAP_SIZE 6000000
 # define NB_PROJECTIONS 4
@@ -112,6 +112,7 @@ typedef struct	s_gdata
 	float		angle_z;
 	float		depth;
 	int16_t		color;
+	int			len;
 
 }				t_gdata;
 

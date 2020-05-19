@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 23:25:41 by afrangio          #+#    #+#             */
-/*   Updated: 2020/05/11 20:14:48 by afrangio         ###   ########.fr       */
+/*   Updated: 2020/05/12 01:02:29 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int			key_hook(int keycode, t_gdata *g)
 {
 	void	(*p[600]) (t_gdata *g, int keycode);
 	int		i;
+
 	ft_putstr("keycode: ");
 	ft_putnbr(keycode);
 	ft_putstr("\n");

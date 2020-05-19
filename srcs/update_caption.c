@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 23:00:08 by afrangio          #+#    #+#             */
-/*   Updated: 2020/05/11 19:41:59 by afrangio         ###   ########.fr       */
+/*   Updated: 2020/05/14 02:52:31 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,44 +35,25 @@ static void	part_1(t_gdata *g, char *caption, char *caption2)
 
 static void	part_2(t_gdata *g, char *caption)
 {
-	char *tmp;
+	char tmp[33];
+	ft_bzero(tmp, sizeof(char) * 33);
 
-	if (g->delta >= INT_MAX)
-		ft_strcat(caption, "2147483647");
-	else
-	{
-		tmp = ft_itoa(g->delta);
-		ft_strcat(caption, tmp);
-		free(tmp);
-	}
+	ft_strcat(caption, ft_itoa(g->delta, sizeof(tmp), tmp));
 	ft_strcat(caption, " | zoom: ");
-	if (g->zoom >= INT_MAX)
-		ft_strcat(caption, "2147483647");
-	else
-	{
-		tmp = ft_itoa(g->zoom);
-		ft_strcat(caption, tmp);
-		free(tmp);
-	}
+	ft_strcat(caption, ft_itoa(g->zoom, sizeof(tmp), tmp));
 }
 
 void		update_caption(t_gdata *g)
 {
-	char *tmp;
+	char tmp[33];
 	char caption[500];
 	char caption2[500];
 
-	part_1(g, caption, caption2);
+	ft_bzero(tmp, 33);
+	part_1(g, caption, caption);
 	part_2(g, caption2);
 	ft_strcat(caption2, " | depth: ");
-	if (g->depth >= INT_MAX)
-		ft_strcat(caption2, "2147483647");
-	else
-	{
-		tmp = ft_itoa(g->depth);
-		ft_strcat(caption2, tmp);
-		free(tmp);
-	}
+	/*ft_strcat(caption2, ft_itoa((int)g->depth, sizeof(tmp), tmp));*/
 	ft_strcat(caption2, " | color mode: ");
 	if (g->color)
 		ft_strcat(caption2, "on");

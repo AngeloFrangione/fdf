@@ -30,7 +30,7 @@ static void	link_horizontal(t_gdata *g)
 			s.a.y = g->vectors[a].y;
 			s.b.x = g->vectors[b].x;
 			s.b.y = g->vectors[b].y;
-			put_segment(&s, g, g->vectors[a].z * g->depth);
+			put_segment(&s, g, g->vectors[a].z);
 		}
 		++i;
 	}
@@ -52,7 +52,7 @@ static void	link_vertical(t_gdata *g)
 		s.a.y = g->vectors[a].y;
 		s.b.x = g->vectors[b].x;
 		s.b.y = g->vectors[b].y;
-		put_segment(&s, g, g->vectors[a].z * g->depth);
+		put_segment(&s, g, g->vectors[a].z);
 		++i;
 	}
 }
