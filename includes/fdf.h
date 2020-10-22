@@ -89,6 +89,7 @@ typedef struct	s_segment
 typedef struct	s_gdata
 {
 	char		*buf;
+	int16_t		space;
 	int			map_state;
 	void		*mlx;
 	void		*mlx_win;
