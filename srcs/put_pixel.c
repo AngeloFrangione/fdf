@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/05 22:16:38 by anonymous         #+#    #+#             */
-/*   Updated: 2020/05/14 03:08:10 by afrangio         ###   ########.fr       */
+/*   Updated: 2020/05/19 05:13:16 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int		offset_color(int color, t_gdata *gd)
 	int r;
 	int g;
 	int b;
+
 	if (!gd->color)
 		color *= 5;
 	r = (-color & 0xFF0000) / 0xF0000;
@@ -55,6 +56,7 @@ int		offset_color(int color, t_gdata *gd)
 void	put_pixel(int x, int y, int z, t_gdata *g)
 {
 	int coord;
+
 	coord = y * WIN_WIDTH + x;
 	if (coord < (WIN_HEIGHT * WIN_WIDTH))
 		if ((x < WIN_WIDTH && y < WIN_HEIGHT) && (x > 0 && y > 0))

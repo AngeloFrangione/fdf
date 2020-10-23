@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 17:10:09 by afrangio          #+#    #+#             */
-/*   Updated: 2020/05/14 02:55:42 by afrangio         ###   ########.fr       */
+/*   Updated: 2020/10/22 19:07:37 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void	number(t_gdata *g, unsigned char c)
 {
 	int i;
 
-	(void)g;
 	i = 0;
 	if (c == '-' && g->buf[0])
 		error(g, 0);
@@ -38,12 +37,13 @@ static void	number(t_gdata *g, unsigned char c)
 	if (i >= 10)
 		error(g, 0);
 	g->buf[i] = c;
+	g->space = 0;
 }
 
 static void	space(t_gdata *g, unsigned char c)
 {
 	(void)c;
-	if (g->buf[0])
+	if (g->buf[0] && g->space != 1)
 	{
 		if (g->buf[0] == '-')
 			if (!g->buf[1])
@@ -52,22 +52,25 @@ static void	space(t_gdata *g, unsigned char c)
 		g->map_state++;
 		g->len++;
 		ft_bzero(g->buf, 10);
+		g->space = 1;
 	}
 }
 
 static void	line_break(t_gdata *g, unsigned char c)
 {
-	/*raise(SIGTRAP);*/
 	(void)c;
-	if (g->buf[0] != 0)
+	if (!g->space)
 	{
-		g->map[g->map_state] = ft_atoi(g->buf);
-		g->map_state++;
-		g->len++;
-		ft_bzero(g->buf, 6);
+		if (g->buf[0] != 0)
+		{
+			g->map[g->map_state] = ft_atoi(g->buf);
+			g->map_state++;
+			g->len++;
+			ft_bzero(g->buf, 6);
+		}
+		else
+			error(g, 0);
 	}
-	else
-		error(g, 0);
 	if (g->width)
 	{
 		if (g->map_state % g->width)
@@ -82,10 +85,9 @@ void		parsing(t_gdata *g, unsigned char *file, int len)
 {
 	int		i;
 	void	(*p[256]) (t_gdata *g, unsigned char c);
-	char	buf[10] = {0};
+	char	buf[10];
 
-	g->map_state = 0;
-	g->len = 0;
+	ft_bzero(g, sizeof(t_gdata*));
 	g->buf = buf;
 	i = -1;
 	while (++i < 255)

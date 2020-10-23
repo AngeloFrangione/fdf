@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/09 23:00:08 by afrangio          #+#    #+#             */
-/*   Updated: 2020/05/14 02:52:31 by afrangio         ###   ########.fr       */
+/*   Updated: 2020/05/19 05:14:55 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 static void	part_1(t_gdata *g, char *caption, char *caption2)
 {
-
 	ft_strcat(caption2, "Quit: esc | Move: arrow keys | ");
 	ft_strcat(caption, "Change depth: W(+) X(-) | colormode: C | ");
 	ft_strcat(caption, "Change perspective: space | Change delta: +/- | ");
@@ -31,7 +30,6 @@ static void	part_1(t_gdata *g, char *caption, char *caption2)
 	else if (g->projection == 4)
 		ft_strcat(caption2, "free angle (2) | ");
 }
-
 
 void		update_caption(t_gdata *g)
 {
@@ -53,10 +51,6 @@ void		update_caption(t_gdata *g)
 		ft_strcat(caption2, "on");
 	else
 		ft_strcat(caption2, "off");
-
-
-
-
 	mlx_string_put(g->mlx, g->mlx_win, 10, WIN_HEIGHT - 30,
 					0xffffff, caption);
 	mlx_string_put(g->mlx, g->mlx_win, 10, WIN_HEIGHT - 10,

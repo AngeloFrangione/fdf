@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/19 02:37:27 by afrangio          #+#    #+#             */
+/*   Updated: 2020/10/22 18:05:01 by afrangio         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
 # define FDF_H
 # define WIN_HEIGHT 600
@@ -9,55 +21,55 @@
 # include "mlx.h"
 
 # ifdef __APPLE__
-# define KEY_ESC 53
-# define KEY_UP 126
-# define KEY_DOWN 125
-# define KEY_RIGHT 124
-# define KEY_LEFT 123
-# define KEY_MINUS 0
-# define KEY_PLUS 0
-# define KEY_SPACE 0
-# define KEY_CAPS 0
-# define KEY_Z 13
-# define KEY_Q 0
-# define KEY_S 1
-# define KEY_D 2
-# define KEY_A 12
-# define KEY_E 14
-# define KEY_W 0
-# define KEY_X 7
-# define KEY_C 8
-# define KEY_ENTER 0
-# define KEY_LENTER 0
-# define MOUSE_LEFT 1
-# define MOUSE_RIGHT 3
-# define MOUSE_FRONT 5
-# define MOUSE_BACK 4
+#  define KEY_ESC 53
+#  define KEY_UP 126
+#  define KEY_DOWN 125
+#  define KEY_RIGHT 124
+#  define KEY_LEFT 123
+#  define KEY_MINUS 0
+#  define KEY_PLUS 0
+#  define KEY_SPACE 0
+#  define KEY_CAPS 0
+#  define KEY_Z 13
+#  define KEY_Q 0
+#  define KEY_S 1
+#  define KEY_D 2
+#  define KEY_A 12
+#  define KEY_E 14
+#  define KEY_W 0
+#  define KEY_X 7
+#  define KEY_C 8
+#  define KEY_ENTER 0
+#  define KEY_LENTER 0
+#  define MOUSE_LEFT 1
+#  define MOUSE_RIGHT 3
+#  define MOUSE_FRONT 5
+#  define MOUSE_BACK 4
 # elif __unix
-# define KEY_ESC 65307
-# define KEY_UP 65362
-# define KEY_DOWN 65364
-# define KEY_RIGHT 65363
-# define KEY_LEFT 65361
-# define KEY_MINUS 65453
-# define KEY_PLUS 65451
-# define KEY_SPACE 32
-# define KEY_CAPS 65505
-# define KEY_Z 122
-# define KEY_Q 113
-# define KEY_S 115
-# define KEY_D 100
-# define KEY_A 97
-# define KEY_E 101
-# define KEY_W 119
-# define KEY_X 120
-# define KEY_C 99
-# define KEY_ENTER 65293
-# define KEY_LENTER 65421
-# define MOUSE_LEFT 1
-# define MOUSE_RIGHT 3
-# define MOUSE_FRONT 5
-# define MOUSE_BACK 4
+#  define KEY_ESC 65307
+#  define KEY_UP 65362
+#  define KEY_DOWN 65364
+#  define KEY_RIGHT 65363
+#  define KEY_LEFT 65361
+#  define KEY_MINUS 65453
+#  define KEY_PLUS 65451
+#  define KEY_SPACE 32
+#  define KEY_CAPS 65505
+#  define KEY_Z 122
+#  define KEY_Q 113
+#  define KEY_S 115
+#  define KEY_D 100
+#  define KEY_A 97
+#  define KEY_E 101
+#  define KEY_W 119
+#  define KEY_X 120
+#  define KEY_C 99
+#  define KEY_ENTER 65293
+#  define KEY_LENTER 65421
+#  define MOUSE_LEFT 1
+#  define MOUSE_RIGHT 3
+#  define MOUSE_FRONT 5
+#  define MOUSE_BACK 4
 # endif
 
 typedef struct	s_vector
@@ -67,7 +79,7 @@ typedef struct	s_vector
 	int16_t z;
 }				t_vector;
 
-typedef struct s_fvector
+typedef struct	s_fvector
 {
 	float x;
 	float y;
@@ -103,11 +115,11 @@ typedef struct	s_gdata
 	int32_t		width;
 	int32_t		height;
 	int32_t		delta;
-	int32_t		up_down;		
+	int32_t		up_down;
 	int32_t		left_right;
 	float		zoom;
 	uint8_t		projection;
-	int32_t	 	camera;
+	int32_t		camera;
 	float		angle_x;
 	float		angle_y;
 	float		angle_z;
@@ -148,6 +160,5 @@ void			k_change_color_mode(t_gdata *g, int keycode);
 void			k_rotate_x(t_gdata *g, int keycode);
 void			k_rotate_y(t_gdata *g, int keycode);
 void			k_rotate_z(t_gdata *g, int keycode);
-
 
 #endif
