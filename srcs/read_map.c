@@ -6,7 +6,7 @@
 /*   By: afrangio <afrangio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 18:14:32 by afrangio          #+#    #+#             */
-/*   Updated: 2020/10/23 14:13:44 by afrangio         ###   ########.fr       */
+/*   Updated: 2020/10/29 16:58:45 by afrangio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,6 @@ void		read_map(t_gdata *g, char **av)
 		exit(1);
 	}
 	if (ret > 0)
-	{
-		printf("%s | %d\n", file, ret);
 		parsing(g, file, ret);
-	}
 	close(fd);
 }
