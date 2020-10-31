@@ -26,7 +26,7 @@ ILINUX			=	-Iminilibx_linux/
 MLX_LINUX		=	minilibx_linux/
 MLX_MACOS		=	minilibx_macos/
 
-MLX_F_LINUX		:=	libmlx_x86_64.a
+MLX_F_LINUX		:=	libmlx.a
 MLX_F_MAC		:=	libmlx.a
 
 MLX_LIB_LINUX	=	$(MLX_LINUX)$(MLX_F_LINUX)
