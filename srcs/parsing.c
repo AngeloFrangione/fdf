@@ -73,6 +73,7 @@ static void	line_break(t_gdata *g, unsigned char c)
 	}
 	if (g->width)
 	{
+		// printf("{%d}, {%d}\n", g->map_state, g->width);
 		if (g->map_state % g->width)
 			error(g, 2);
 	}
@@ -86,8 +87,8 @@ void		parsing(t_gdata *g, unsigned char *file, int len)
 	int		i;
 	void	(*p[256]) (t_gdata *g, unsigned char c);
 	char	buf[10];
-
-	ft_bzero(g, sizeof(t_gdata*));
+	
+	g->map_state = 0;
 	g->buf = buf;
 	i = -1;
 	while (++i < 255)
